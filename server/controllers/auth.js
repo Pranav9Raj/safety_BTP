@@ -79,19 +79,26 @@ const login = (req, res, next) => {
 const isAuth = (req, res, next) => {
     const authHeader = req.get("Authorization");
     if (!authHeader) {
-        return res.status(401).json({ message: 'not authenticated' });
+      return res.status(401).json({ message: 'not authenticated' });
     };
+  
     const token = authHeader.split(' ')[1];
-    let decodedToken; 
+    let decodedToken = null;
     try {
-        decodedToken = jwt.verify(token, 'secret');
+      decodedToken = jwt.verify(token, 'secret');
     } catch (err) {
-        return res.status(500).json({ message: err.message || 'could not decode the token' });
+      return res.status(500).json({ message: err.message || 'could not decode the token' });
     };
+  
     if (!decodedToken) {
-        res.status(401).json({ message: 'unauthorized' });
+    //   res.status(401).json({ message: 'unauthorized' });
+      return decodedToken;
     } else {
-        res.status(200).json({ message: 'here is your resource' });
+      req.userEmail = decodedToken.email;
+      res.status(200).json({ message: 'logged in' });
+  
+        // Return the decoded token, even if the status code is 200
+         return decodedToken;
     };
 };
 

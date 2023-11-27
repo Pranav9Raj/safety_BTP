@@ -1,6 +1,8 @@
 import { Sequelize } from 'sequelize';
 
-import sequelize from '../utils/database.js';
+import combined from '../utils/database.js';
+
+const sequelize = combined.sequelize;
 
 const User = sequelize.define('users', {
    id: {

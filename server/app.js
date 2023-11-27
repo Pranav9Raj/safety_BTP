@@ -1,10 +1,12 @@
 import express from 'express';
 
-import sequelize from './utils/database.js';
+import combinedData from './utils/database.js';
 
 import router from './routes/routes.js';
 
 const app = express();
+const sequelize = combinedData.sequelize;
+const sequelizeData = combinedData.sequelize_data;
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -20,5 +22,6 @@ app.use((_, res, next) => {
 app.use(router);
 
 sequelize.sync(); 
+sequelizeData.sync();
 
 app.listen(5000);
