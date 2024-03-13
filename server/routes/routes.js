@@ -2,8 +2,11 @@ import express from 'express';
 
 import { signup, login, isAuth } from '../controllers/auth.js';
 import { dataEntry } from '../controllers/data_entry.js';
-import { graphData } from '../controllers/graph_data.js';
 import { newgraphData } from '../controllers/overall_graph_data.js';
+import { newdataEntry} from '../controllers/data_new_entry.js';
+import {getInjuriesInTimeline} from '../controllers/injury_count.js';
+import { calculateDateDifferences } from '../controllers/freq_calc.js';
+
 
 const router = express.Router();
 
@@ -15,9 +18,13 @@ router.post('/dataentry',dataEntry);
 
 router.get('/private', isAuth);
 
-router.get('/graphData', graphData);
-
 router.get('/newgraphData', newgraphData);
+
+router.post('/newdataentry',newdataEntry);
+
+router.get('/injurycount',getInjuriesInTimeline);
+
+router.get('/freqcalc',calculateDateDifferences);
 
 router.get('/public', (req, res, next) => {
     res.status(200).json({ message: "here is your public resource" });

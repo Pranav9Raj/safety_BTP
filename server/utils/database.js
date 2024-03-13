@@ -8,6 +8,7 @@ let user = process.env.DATABASE_USER;
 let password = process.env.DATABASE_PASSWORD;
 let database_login = process.env.DATABASE_LOGIN;
 let database_data= process.env.DATABASE_DATA;
+let database_entrydata = process.env.DATABASE_ENTRY;
 
 const sequelize = new Sequelize(database_login, user, password, {
     dialect: 'mysql',
@@ -20,7 +21,14 @@ const sequelize_data = new Sequelize(database_data, user, password, {
     host: 'localhost', 
 });
 
+
+const sequelize_entrydata = new Sequelize(database_entrydata, user, password, {
+    dialect: 'mysql',
+    host: 'localhost', 
+});
+
 export default {
     sequelize,
     sequelize_data,
+    sequelize_entrydata
 };

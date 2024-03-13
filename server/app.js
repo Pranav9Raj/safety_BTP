@@ -7,6 +7,7 @@ import router from './routes/routes.js';
 const app = express();
 const sequelize = combinedData.sequelize;
 const sequelizeData = combinedData.sequelize_data;
+const sequelizeEntryData = combinedData.sequelize_entrydata;
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -23,5 +24,6 @@ app.use(router);
 
 sequelize.sync(); 
 sequelizeData.sync();
+sequelizeEntryData.sync();
 
 app.listen(5000);
