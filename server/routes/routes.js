@@ -6,6 +6,7 @@ import { newgraphData } from '../controllers/overall_graph_data.js';
 import { newdataEntry} from '../controllers/data_new_entry.js';
 import {getInjuriesInTimeline} from '../controllers/injury_count.js';
 import { calculateDateDifferences } from '../controllers/freq_calc.js';
+import { analyzeAndVisualizeTimeSeries } from '../controllers/timeseries.js';
 
 
 const router = express.Router();
@@ -25,6 +26,8 @@ router.post('/newdataentry',newdataEntry);
 router.get('/injurycount',getInjuriesInTimeline);
 
 router.get('/freqcalc',calculateDateDifferences);
+
+router.get('/ts',analyzeAndVisualizeTimeSeries);
 
 router.get('/public', (req, res, next) => {
     res.status(200).json({ message: "here is your public resource" });

@@ -43,7 +43,11 @@ const EntryData = sequelizeEntryData.define('data', {
     date: {
         type: Sequelize.DATE,
         allowNull: false,
-      }
+    },
+    daysdiff: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    }
  });
  
 export default EntryData;
